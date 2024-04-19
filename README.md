@@ -5,5 +5,5 @@ This is a simple repo to test and debug Infura caching of block-specific archiva
 - Clone this repo
 - `npm i`
 - Add your RPC key to a `.env` (example is provided)
-- Edit any params you'd like in `config.json`
+- Edit any params you'd like in `src/config.js`
 - `npm start`
