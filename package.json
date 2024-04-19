@@ -1,0 +1,17 @@
+{
+  "name": "infura-test",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "type": "module",
+  "author": "Ncookie",
+  "scripts": {
+    "start": "node ."
+  },
+  "devDependencies": {
+    "prettier": "3.2.5"
+  },
+  "dependencies": {
+    "viem": "2.9.23"
+  }
+}
