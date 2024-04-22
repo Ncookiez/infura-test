@@ -13,7 +13,7 @@ export const getDrawTimestamps = () => {
 
   const endTimestamp = Math.min(startTimestamp + prizePool.drawPeriod, currentTimestamp)
 
-  for (let i = startTimestamp; i < endTimestamp; i += 60 * 30) {
+  for (let i = startTimestamp; i < endTimestamp; i += 60 * 5) {
     timestamps.push(BigInt(i))
   }
   timestamps.push(BigInt(endTimestamp))
