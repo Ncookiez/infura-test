@@ -1,5 +1,6 @@
 import { createPublicClient, http } from 'viem'
 import { optimism } from 'viem/chains'
+import 'dotenv/config'
 
 export const prizePool = {
   chainId: 10,
@@ -25,12 +26,11 @@ export const claimer = {
 }
 
 export const draw = {
-  id: 1,
-  numTiers: 4,
-  openedAt: 1_713_477_600
+  id: 3,
+  numTiers: 6
 }
 
 export const publicClient = createPublicClient({
   chain: optimism,
-  transport: http(`https://optimism-sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`)
+  transport: http(`https://optimism-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`)
 })

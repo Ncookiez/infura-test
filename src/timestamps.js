@@ -1,9 +1,10 @@
 import { draw, prizePool } from './config.js'
+import { absBigInt, divideBigInts } from './math.js'
 
 export const getDrawTimestamps = () => {
   const timestamps = []
 
-  const startTimestamp = draw.openedAt + prizePool.drawPeriod
+  const startTimestamp = 1_713_477_600 + draw.id * prizePool.drawPeriod
   const currentTimestamp = Number((Date.now() / 1_000).toFixed(0))
 
   if (startTimestamp > currentTimestamp) {
@@ -12,7 +13,7 @@ export const getDrawTimestamps = () => {
 
   const endTimestamp = Math.min(startTimestamp + prizePool.drawPeriod, currentTimestamp)
 
-  for (let i = startTimestamp; i < endTimestamp; i += 300) {
+  for (let i = startTimestamp; i < endTimestamp; i += 60 * 30) {
     timestamps.push(BigInt(i))
   }
   timestamps.push(BigInt(endTimestamp))
@@ -63,7 +64,7 @@ export const getBlockAtTimestamp = async (publicClient, timestamp, range = 60) =
     const blockDiff = ub.number - lb.number
     if (blockDiff <= 1n) {
       let closest = ub
-      if (abs(lb.timestamp - timestamp) < abs(ub.timestamp - timestamp)) closest = lb
+      if (absBigInt(lb.timestamp - timestamp) < absBigInt(ub.timestamp - timestamp)) closest = lb
       return closest
     }
 
@@ -81,6 +82,7 @@ export const getBlockAtTimestamp = async (publicClient, timestamp, range = 60) =
     } else {
       lb = estBlock
     }
-  } while (abs(estBlock.timestamp - timestamp) > range)
+  } while (absBigInt(estBlock.timestamp - timestamp) > range)
+
   return estBlock
 }

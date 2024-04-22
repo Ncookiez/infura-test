@@ -1,3 +1,7 @@
 import { getClaimFeesOverTime } from './src/claimFees.js'
 
-getClaimFeesOverTime()
+try {
+  getClaimFeesOverTime()
+} catch (err) {
+  console.error(err)
+}
