@@ -30,7 +30,9 @@ export const draw = {
   numTiers: 6
 }
 
-export const publicClient = createPublicClient({
-  chain: optimism,
-  transport: http(`https://optimism-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`)
-})
+export const publicClient = !!process.env.INFURA_API_KEY
+  ? createPublicClient({
+      chain: optimism,
+      transport: http(`https://optimism-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`)
+    })
+  : undefined

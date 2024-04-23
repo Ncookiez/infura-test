@@ -2,6 +2,8 @@ import { claimer, draw, publicClient } from './config.js'
 import { getBlockAtTimestamp, getDrawTimestamps } from './timestamps.js'
 
 export const getClaimFeesOverTime = async () => {
+  if (!publicClient) throw new Error('No `INFURA_API_KEY` found in `.env`.')
+
   const drawTimestamps = getDrawTimestamps()
 
   const blockNumbers = []
